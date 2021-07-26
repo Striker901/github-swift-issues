@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,8 @@
 		97974BD426AEF71700F72ADF /* github_swift_issuesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97974BD326AEF71700F72ADF /* github_swift_issuesTests.swift */; };
 		97974BDF26AEF71700F72ADF /* github_swift_issuesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97974BDE26AEF71700F72ADF /* github_swift_issuesUITests.swift */; };
 		97974BF426AEF88400F72ADF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97974BF326AEF88400F72ADF /* HomeViewController.swift */; };
+		97974BF726AEFAF300F72ADF /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 97974BF626AEFAF300F72ADF /* Moya */; };
+		97974BFA26AEFED900F72ADF /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 97974BF926AEFED900F72ADF /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97974BF726AEFAF300F72ADF /* Moya in Frameworks */,
+				97974BFA26AEFED900F72ADF /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +201,10 @@
 			dependencies = (
 			);
 			name = "github-swift-issues";
+			packageProductDependencies = (
+				97974BF626AEFAF300F72ADF /* Moya */,
+				97974BF926AEFED900F72ADF /* SnapKit */,
+			);
 			productName = "github-swift-issues";
 			productReference = 97974BB926AEF71200F72ADF /* github-swift-issues.app */;
 			productType = "com.apple.product-type.application";
@@ -268,6 +276,10 @@
 				Base,
 			);
 			mainGroup = 97974BB026AEF71200F72ADF;
+			packageReferences = (
+				97974BF526AEFAF300F72ADF /* XCRemoteSwiftPackageReference "Moya" */,
+				97974BF826AEFED900F72ADF /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 97974BBA26AEF71200F72ADF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -631,6 +643,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		97974BF526AEFAF300F72ADF /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 14.0.1;
+			};
+		};
+		97974BF826AEFED900F72ADF /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		97974BF626AEFAF300F72ADF /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 97974BF526AEFAF300F72ADF /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		97974BF926AEFED900F72ADF /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 97974BF826AEFED900F72ADF /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 97974BB126AEF71200F72ADF /* Project object */;
 }
