@@ -6,15 +6,7 @@
 //
 
 import UIKit
-
-extension UITableView {
-    func configureTableView(delegate: UITableViewDelegate? = nil, dataSource: UITableViewDataSource? = nil, dragDelegate: UITableViewDragDelegate? = nil, dropDelegate: UITableViewDropDelegate? = nil) {
-        self.delegate = delegate
-        self.dataSource = dataSource
-        self.dragDelegate = dragDelegate
-        self.dropDelegate = dropDelegate
-    }
-}
+import SwiftSpinner
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -24,27 +16,48 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var reloadTableView: Bool = false { didSet { screenView.tableView.reloadData() } }
     private var response: IssuesResponseModel? { if let response = viewModel.response { return response } else { return nil} }
     
+    let refreshControl = UIRefreshControl()
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        screenView.tableView.configureTableView(delegate: self, dataSource: self)
-        configureNavigationBar(title: "Issues list from Swift repository", largeTitleDisplayMode: .always)
+        configureViews()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        viewModel.homeIssuesList(viewController: self, completion: { self.reloadTableView = $0 })
+        configureTableView(response: response)
+        configureNavigationBar(title: "Issues list from Swift repository", largeTitleDisplayMode: .always)
     }
     
+    // MARK: - Configure View
     override func loadView() {
         view = HomeView()
+    }
+    
+    private func configureTableView(response: IssuesResponseModel?) {
+        if response == nil {
+            SwiftSpinner.show("Loading", animated: true)
+            viewModel.homeIssuesList(viewController: self) { [weak self] shouldReload in
+                guard let self = self else { return }
+                self.reloadTableView = shouldReload
+                SwiftSpinner.hide()
+            }
+        }
+    }
+    
+    private func configureViews() {
+        screenView.tableView.configureTableView(delegate: self, dataSource: self)
+        
+        refreshControl.attributedTitle = NSAttributedString(string: "Updating", attributes: [NSAttributedString.Key.foregroundColor : UIColor(named: "light_lead")!])
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        screenView.tableView.addSubview(refreshControl)
     }
     
     // MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let response = response else { return }
-        let detailsViewController = IssueDetailsViewController(details: response[indexPath.row].body)
+        let detailsViewController = IssueDetailsViewController(content: response[indexPath.row])
         navigationController?.pushViewController(detailsViewController, animated: true)
     }
     
@@ -71,4 +84,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return 64
     }
     
+    // MARK: - Action
+    @objc func refresh() {
+        viewModel.homeIssuesList(viewController: self) { [weak self] shouldReload in
+            guard let self = self else { return }
+            self.reloadTableView = shouldReload
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.refreshControl.endRefreshing()
+            }
+        }
+    }
 }

@@ -23,5 +23,8 @@ struct IssueResponseModel: Codable {
 }
 
 struct UserResponseModel: Codable {
-    let avatar_url: URL
+    private enum CodingKeys: String, CodingKey { case avatarURL = "avatar_url", login }
+    
+    let avatarURL: URL
+    let login: String
 }

@@ -9,7 +9,7 @@ import UIKit
 
 extension UIViewController {
     func configureNavigationBar(title: String, largeTitleDisplayMode: UINavigationItem.LargeTitleDisplayMode) {
-        navigationController?.navigationBar.topItem?.title = "Issues list from Swift repository"
+        navigationController?.navigationBar.topItem?.title = "title"
         navigationController?.navigationBar.topItem?.largeTitleDisplayMode = largeTitleDisplayMode
     }
 }

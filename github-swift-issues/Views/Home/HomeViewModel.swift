@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SwiftSpinner
 
 final class HomeViewModel {
     typealias IssuesListCompletion = (IssuesResponseModel?, _ error: String?) -> Void
