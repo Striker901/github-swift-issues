@@ -16,6 +16,7 @@
 		97974BF426AEF88400F72ADF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97974BF326AEF88400F72ADF /* HomeViewController.swift */; };
 		97974BF726AEFAF300F72ADF /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 97974BF626AEFAF300F72ADF /* Moya */; };
 		97974BFA26AEFED900F72ADF /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 97974BF926AEFED900F72ADF /* SnapKit */; };
+		97974C1526AF948100F72ADF /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 97974C1426AF948100F72ADF /* Nuke */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97974C1526AF948100F72ADF /* Nuke in Frameworks */,
 				97974BF726AEFAF300F72ADF /* Moya in Frameworks */,
 				97974BFA26AEFED900F72ADF /* SnapKit in Frameworks */,
 			);
@@ -204,6 +206,7 @@
 			packageProductDependencies = (
 				97974BF626AEFAF300F72ADF /* Moya */,
 				97974BF926AEFED900F72ADF /* SnapKit */,
+				97974C1426AF948100F72ADF /* Nuke */,
 			);
 			productName = "github-swift-issues";
 			productReference = 97974BB926AEF71200F72ADF /* github-swift-issues.app */;
@@ -279,6 +282,7 @@
 			packageReferences = (
 				97974BF526AEFAF300F72ADF /* XCRemoteSwiftPackageReference "Moya" */,
 				97974BF826AEFED900F72ADF /* XCRemoteSwiftPackageReference "SnapKit" */,
+				97974C1326AF948100F72ADF /* XCRemoteSwiftPackageReference "Nuke" */,
 			);
 			productRefGroup = 97974BBA26AEF71200F72ADF /* Products */;
 			projectDirPath = "";
@@ -661,6 +665,14 @@
 				minimumVersion = 5.0.1;
 			};
 		};
+		97974C1326AF948100F72ADF /* XCRemoteSwiftPackageReference "Nuke" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Nuke.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.3.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -673,6 +685,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 97974BF826AEFED900F72ADF /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		97974C1426AF948100F72ADF /* Nuke */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 97974C1326AF948100F72ADF /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = Nuke;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
