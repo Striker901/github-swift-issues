@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		97864E6F26B0F15D00ABB9B3 /* OHHTTPStubs in Frameworks */ = {isa = PBXBuildFile; productRef = 97864E6E26B0F15D00ABB9B3 /* OHHTTPStubs */; };
+		97864E7126B0F15D00ABB9B3 /* OHHTTPStubsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 97864E7026B0F15D00ABB9B3 /* OHHTTPStubsSwift */; };
 		97974BBD26AEF71200F72ADF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97974BBC26AEF71200F72ADF /* AppDelegate.swift */; };
 		97974BBF26AEF71200F72ADF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97974BBE26AEF71200F72ADF /* SceneDelegate.swift */; };
 		97974BC626AEF71600F72ADF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97974BC526AEF71600F72ADF /* Assets.xcassets */; };
@@ -84,6 +86,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97864E6F26B0F15D00ABB9B3 /* OHHTTPStubs in Frameworks */,
+				97864E7126B0F15D00ABB9B3 /* OHHTTPStubsSwift in Frameworks */,
 				97974C1D26AFA83300F72ADF /* SwiftSpinner in Frameworks */,
 				97974C1526AF948100F72ADF /* Nuke in Frameworks */,
 				97974BF726AEFAF300F72ADF /* Moya in Frameworks */,
@@ -281,6 +285,8 @@
 				97974BF926AEFED900F72ADF /* SnapKit */,
 				97974C1426AF948100F72ADF /* Nuke */,
 				97974C1C26AFA83300F72ADF /* SwiftSpinner */,
+				97864E6E26B0F15D00ABB9B3 /* OHHTTPStubs */,
+				97864E7026B0F15D00ABB9B3 /* OHHTTPStubsSwift */,
 			);
 			productName = "github-swift-issues";
 			productReference = 97974BB926AEF71200F72ADF /* github-swift-issues.app */;
@@ -300,6 +306,8 @@
 				97974BD126AEF71600F72ADF /* PBXTargetDependency */,
 			);
 			name = "github-swift-issuesTests";
+			packageProductDependencies = (
+			);
 			productName = "github-swift-issuesTests";
 			productReference = 97974BCF26AEF71600F72ADF /* github-swift-issuesTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -358,6 +366,7 @@
 				97974BF826AEFED900F72ADF /* XCRemoteSwiftPackageReference "SnapKit" */,
 				97974C1326AF948100F72ADF /* XCRemoteSwiftPackageReference "Nuke" */,
 				97974C1B26AFA83300F72ADF /* XCRemoteSwiftPackageReference "SwiftSpinner" */,
+				97864E6D26B0F15D00ABB9B3 /* XCRemoteSwiftPackageReference "OHHTTPStubs" */,
 			);
 			productRefGroup = 97974BBA26AEF71200F72ADF /* Products */;
 			projectDirPath = "";
@@ -737,6 +746,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		97864E6D26B0F15D00ABB9B3 /* XCRemoteSwiftPackageReference "OHHTTPStubs" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AliSoftware/OHHTTPStubs.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.1.0;
+			};
+		};
 		97974BF526AEFAF300F72ADF /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya.git";
@@ -772,6 +789,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		97864E6E26B0F15D00ABB9B3 /* OHHTTPStubs */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 97864E6D26B0F15D00ABB9B3 /* XCRemoteSwiftPackageReference "OHHTTPStubs" */;
+			productName = OHHTTPStubs;
+		};
+		97864E7026B0F15D00ABB9B3 /* OHHTTPStubsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 97864E6D26B0F15D00ABB9B3 /* XCRemoteSwiftPackageReference "OHHTTPStubs" */;
+			productName = OHHTTPStubsSwift;
+		};
 		97974BF626AEFAF300F72ADF /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 97974BF526AEFAF300F72ADF /* XCRemoteSwiftPackageReference "Moya" */;

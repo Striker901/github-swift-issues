@@ -12,20 +12,51 @@ import XCTest
 class HomeViewModelTest: XCTestCase {
     
     private let provider: MoyaProvider<HomeTarget> = .init()
-
-    func test_homeIssuesList_withValidRequest() throws {
-        let request = HomeAPI()
-        let requestData = IssueResponseModel(user: UserResponseModel(avatarURL: URL(string: "https://avatars.githubusercontent.com/u/608696?v=4")!, login: "lorentey"), htmlURL: URL(string:"https://github.com/apple/swift/pull/38635")!, state: .open, title: "[stdlib] Update SubSequence docs", body: "[SE-0234] removed the `SubSequence` associated type from `Sequence`, moving it up to `Collection`. Update the docs to reflect this.\r\n\r\n[SE-0234]: https://github.com/apple/swift-evolution/blob/master/proposals/0234-remove-sequence-subsequence.md", createdAt: "2021-07-26T20:36:04Z")
+    
+    func test_viewmodel_request() {
+        // Give
+        let sample = HomeViewModel()
+        let expectation = self.expectation(description: "Update condition")
+        var updateExists: Bool?
         
-        request.issuesList { result in
+        // When
+        sample.homeIssuesList(viewController: UIViewController()) { hasUpdate in
+            XCTAssertNotNil(hasUpdate)
+            updateExists = hasUpdate
+            expectation.fulfill()
+        }
+
+        // Then
+        waitForExpectations(timeout: 5)
+        XCTAssertNotNil(updateExists)
+    }
+    
+    func test_issuesListRequest_hasValue() {
+        //Given
+        let expectation = expectation(description: "issueList")
+        var issueModel: IssuesResponseModel?
+        
+        
+        //When
+        provider.request(.issuesList(limit: 30)) { result in
             XCTAssertNotNil(result)
             switch result {
             case .success(let response):
-                XCTAssertNotNil(response)
-                XCTAssertEqual(requestData.body, response.first(where: { $0.user.login == requestData.user.login })?.body)
+                XCTAssertNotNil(try? response.map(IssuesResponseModel.self))
+                XCTAssertEqual(response.statusCode, 200)
+                if let response = try? response.map(IssuesResponseModel.self) {
+                    issueModel = response
+                    expectation.fulfill()
+                }
             case .failure(let error):
-                XCTAssertNotNil(error)
+                XCTAssertNil(error)
             }
         }
+        
+        
+        //Then
+        waitForExpectations(timeout: 5)
+        XCTAssertNotNil(issueModel)
+        XCTAssertEqual(issueModel?.first(where: { $0.state == .open })!.state, State.open)
     }
 }

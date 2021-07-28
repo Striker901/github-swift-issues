@@ -9,7 +9,11 @@ import Foundation
 
 typealias IssuesResponseModel = [IssueResponseModel]
 
-struct IssueResponseModel: Codable {
+struct IssueResponseModel: Codable, Equatable {
+    static func == (lhs: IssueResponseModel, rhs: IssueResponseModel) -> Bool {
+        return lhs.title == rhs.title && lhs.state == rhs.state && lhs.user == rhs.user
+    }
+    
     private enum CodingKeys: String, CodingKey {
         case user, state, title, body
         case htmlURL = "html_url"
@@ -22,7 +26,7 @@ struct IssueResponseModel: Codable {
     let title, body, createdAt: String
 }
 
-struct UserResponseModel: Codable {
+struct UserResponseModel: Codable, Equatable {
     private enum CodingKeys: String, CodingKey { case avatarURL = "avatar_url", login }
     
     let avatarURL: URL
